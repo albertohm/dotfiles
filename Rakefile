@@ -10,7 +10,12 @@ task :install => [:submodule_init, :submodules] do
   puts "======================================================"
   puts
 
-  install_homebrew if RUBY_PLATFORM.downcase.include?("darwin")
+  if RUBY_PLATFORM.downcase.include?("darwin")
+    install_homebrew
+  elsif RUBY_PLATFORM.downcase.include?("linux")
+    install_linux_stuff
+  end
+
   install_rvm_binstubs
 
   # this has all the runcoms from this directory.
@@ -27,9 +32,17 @@ task :install => [:submodule_init, :submodules] do
 
   Rake::Task["install_prezto"].execute
 
-  install_fonts if RUBY_PLATFORM.downcase.include?("darwin")
+  if RUBY_PLATFORM.downcase.include?("darwin")
+    install_fonts
+  elsif RUBY_PLATFORM.downcase.include?("linux")
+    install_linux_fonts
+  end
 
-  install_term_theme if RUBY_PLATFORM.downcase.include?("darwin")
+  if RUBY_PLATFORM.downcase.include?("darwin")
+    install_term_theme
+  elsif RUBY_PLATFORM.downcase.include?("linux")
+    install_gnome_terminal_theme
+  end
 
   success_msg("installed")
 end
@@ -154,11 +167,40 @@ def install_homebrew
   puts
 end
 
+def install_linux_stuff
+  puts "======================================================"
+  puts "Installing required linux packages "
+  puts "======================================================"
+  package_list = %w(zsh ctags git tmux wget curl)
+
+  package_list.each do |pkg|
+    run %{which #{pkg}}
+    run %{sudo apt-get install -y #{pkg}} unless $?.success?
+  end
+
+  # Install hub from github
+  run %{which hub}
+  unless $?.success?
+    run %{rm -rf /tmp/hub && mkdir /tmp/hub && git clone git://github.com/github/hub.git /tmp/hub/ && cd /tmp/hub && rake install}
+  end
+end
+
 def install_fonts
   puts "======================================================"
   puts "Installing patched fonts for Powerline/Lightline."
   puts "======================================================"
   run %{ cp -f $HOME/.yadr/fonts/* $HOME/Library/Fonts }
+  puts
+end
+
+def install_linux_fonts
+  run %{sudo apt-get install -y fontconfig}
+
+  puts "======================================================"
+  puts "Installing patched fonts for Powerline/Lightline."
+  puts "======================================================"
+  run %{ mkdir $HOME/.fonts && cp -f $HOME/.yadr/fonts/* $HOME/.fonts/ }
+  run %{ sudo fc-cache -fv }
   puts
 end
 
@@ -225,6 +267,22 @@ def ask(message, values)
   end
   selection = selection.to_i-1
   values[selection]
+end
+
+def install_gnome_terminal_theme
+  # Only install it if gnome-terminal is present
+  run %{which gnome-terminal}
+  return unless $?.success?
+
+  puts "======================================================"
+  puts "Installing gnome-terminal solarized theme."
+  puts "======================================================"
+  run %{wget --no-check-certificate https://raw.github.com/seebi/dircolors-solarized/master/dircolors.ansi-dark -O ~/.dircolors}
+  run %{eval `dircolors ~/.dircolors`}
+
+  run %{rm -rf /tmp/gnome-terminal-colors && mkdir /tmp/gnome-terminal-colors}
+  run %{git clone https://github.com/sigurdga/gnome-terminal-colors-solarized.git /tmp/gnome-terminal-colors}
+  run %{cd /tmp/gnome-terminal-colors && ./install.sh}
 end
 
 def install_prezto

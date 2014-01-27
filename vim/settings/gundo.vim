@@ -5,3 +5,5 @@ let g:gundo_right = 1
 
 " a little wider for wider screens
 let g:gundo_width = 60
+
+nnoremap <F5> :GundoToggle<CR>
