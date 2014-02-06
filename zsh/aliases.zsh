@@ -127,6 +127,9 @@ alias k9='kill -9'
 # Gem install
 alias sgi='sudo gem install --no-ri --no-rdoc'
 
+# Tmux correct colors
+alias tmux="TERM=screen-256color tmux"
+
 # TODOS
 # This uses NValt (NotationalVelocity alt fork) - http://brettterpstra.com/project/nvalt/
 # to find the note called 'todo'
