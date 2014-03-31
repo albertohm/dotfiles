@@ -42,6 +42,7 @@ task :install => [:submodule_init, :submodules] do
     install_term_theme
   elsif RUBY_PLATFORM.downcase.include?("linux")
     install_gnome_terminal_theme
+    install_acpitool
   end
 
   success_msg("installed")
@@ -283,6 +284,11 @@ def install_gnome_terminal_theme
   run %{rm -rf /tmp/gnome-terminal-colors && mkdir /tmp/gnome-terminal-colors}
   run %{git clone https://github.com/sigurdga/gnome-terminal-colors-solarized.git /tmp/gnome-terminal-colors}
   run %{cd /tmp/gnome-terminal-colors && ./install.sh}
+end
+
+def install_acpitool
+  run %{which acpitool}
+  run %{sudo apt-get install -y acpitool} unless $?.success?
 end
 
 def install_prezto
