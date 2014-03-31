@@ -31,9 +31,9 @@ Bundle "skwp/vim-spec-finder"
 Bundle "ck3g/vim-change-hash-syntax"
 
 " Other languages
-Bundle "briancollins/vim-jst"
+"Bundle "briancollins/vim-jst"
 Bundle "pangloss/vim-javascript"
-Bundle "rodjek/vim-puppet"
+"Bundle "rodjek/vim-puppet"
 Bundle "othree/javascript-libraries-syntax.vim"
 
 " Html, Xml, Css, Markdown...
@@ -57,9 +57,9 @@ Bundle "tpope/vim-fugitive"
 Bundle "tpope/vim-git"
 
 " General text editing improvements...
-Bundle "AndrewRadev/splitjoin.vim"
-Bundle "Raimondi/delimitMate"
-Bundle "Shougo/neocomplete.git"
+"Bundle "AndrewRadev/splitjoin.vim"
+"Bundle "Raimondi/delimitMate"
+"Bundle "Shougo/neocomplete.git"
 Bundle "briandoll/change-inside-surroundings.vim.git"
 Bundle "godlygeek/tabular"
 Bundle "skwp/vim-easymotion"
@@ -71,13 +71,13 @@ Bundle "terryma/vim-multiple-cursors"
 
 
 " Tabbable snippets
-Bundle "garbas/vim-snipmate.git"
-Bundle "honza/vim-snippets"
+"Bundle "garbas/vim-snipmate.git"
+"Bundle "honza/vim-snippets"
 
 "File Navigation / Project Management
 Bundle "jistr/vim-nerdtree-tabs.git"
 Bundle "scrooloose/nerdtree.git"
-Bundle "kien/ctrlp.vim"
+"Bundle "kien/ctrlp.vim"
 Bundle "tpope/vim-vinegar"
 
 "Search
@@ -88,14 +88,14 @@ Bundle "vim-scripts/IndexedSearch"
 Bundle "nelstrom/vim-visual-star-search"
 
 " General vim improvements
-Bundle "chrisbra/NrrwRgn"
-Bundle "MarcWeber/vim-addon-mw-utils.git"
-Bundle "bogado/file-line.git"
-Bundle "majutsushi/tagbar.git"
-Bundle "mattn/webapi-vim.git"
+"Bundle "chrisbra/NrrwRgn"
+"Bundle "MarcWeber/vim-addon-mw-utils.git"
+"Bundle "bogado/file-line.git"
+"Bundle "majutsushi/tagbar.git"
+"Bundle "mattn/webapi-vim.git"
 Bundle "scrooloose/syntastic.git"
 Bundle "sjl/gundo.vim"
-Bundle "skwp/YankRing.vim"
+"Bundle "skwp/YankRing.vim"
 Bundle "skwp/greplace.vim"
 Bundle "tomtom/tlib_vim.git"
 Bundle "tpope/vim-abolish"
