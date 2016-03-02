@@ -49,6 +49,7 @@ Bundle "kchmck/vim-coffee-script"
 " Bundle "timcharper/textile.vim.git"
 Bundle "tpope/vim-haml"
 "Bundle "wavded/vim-stylus"
+Bundle "ap/vim-css-color"
 
 " Git related...
 "Bundle "gregsexton/gitv"
